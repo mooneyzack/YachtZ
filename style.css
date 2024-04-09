@@ -1,0 +1,108 @@
+/* Reset CSS */
+html,
+body,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #444;
+  color: #999;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Containers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#roll {
+  padding: 10px 30px;
+  font-size: 25pt;
+
+}
+
+.dice {
+  background-color: lightcoral;
+  border: 5px black solid;
+  border-radius: 10px;
+  color: black;
+  font-size: 25pt;
+  padding: 25px;
+  margin: 5px;
+}
+
+.held {
+  border: 10px blue solid;
+}
+
+/* Grid Layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.col {
+  flex: 1;
+  padding: 0 10px;
+}
+
+
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  /* Add responsive styles here */
+}
