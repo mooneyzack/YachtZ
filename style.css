@@ -20,10 +20,7 @@ body {
   line-height: 1.6;
   background-color: #444;
   color: #999;
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-
+  
 }
 
 /* Typography */
@@ -52,7 +49,7 @@ a:hover {
 /* Containers */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -62,6 +59,14 @@ a:hover {
   font-size: 25pt;
 
 }
+.title, .score {
+  display: inline-block;
+  border: 2px red solid;
+  min-height: 30px;
+  min-width: 50px;
+  vertical-align: bottom;
+  padding: 10px;
+}
 
 .dice {
   background-color: lightcoral;
@@ -70,16 +75,27 @@ a:hover {
   color: black;
   font-size: 25pt;
   padding: 25px;
-  margin: 5px;
+  margin: 25px;
 }
 
 .held {
   border: 10px blue solid;
 }
 
+.dice-container {
+  display: inline-block;
+}
+
+.scoresheet {
+  display: inline-block;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
 /* Grid Layout */
 .row {
-  display: flex;
+  display: block;
+  background-color: white;
   flex-wrap: wrap;
   margin: 0 -10px;
 }
@@ -89,7 +105,28 @@ a:hover {
   padding: 0 10px;
 }
 
+.title {
+  width: 150px;
+}
 
+.score {
+  width: 75px;
+  height: 50px;
+  cursor:pointer;
+}
+
+.score:hover {
+  background-color: aqua;
+}
+
+.filled-in { /* styling for when score has been recorded in score box*/
+  background-color: white;
+  cursor:not-allowed;
+}
+
+.filled-in:hover {
+  background-color: white;
+}
 
 /* Responsive Images */
 img {

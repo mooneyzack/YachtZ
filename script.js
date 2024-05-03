@@ -1,5 +1,4 @@
 //Click roll button
-
 class Dice {
   holdState;
   constructor() {
@@ -27,6 +26,20 @@ function initEventListeners() {
   document.querySelector('#dice3').addEventListener("click", function() {holdDice(Dice3)});
   document.querySelector('#dice4').addEventListener("click", function() {holdDice(Dice4)});
   document.querySelector('#dice5').addEventListener("click", function() {holdDice(Dice5)});
+
+  // functions for calculating scores
+  //document.querySelector('#ones .score').addEventListener("click", saveScore);
+  for (var i = 0; i < document.querySelectorAll('.score').length; i++) {
+    document.querySelectorAll('.score')[i].addEventListener("click", saveScore);
+  }
+
+  /*
+  document.querySelector('#twos').addEventListener("click", function() );
+  document.querySelector('').addEventListener("click", function() );
+  document.querySelector('').addEventListener("click", function() );
+  document.querySelector('').addEventListener("click", function() );
+  document.querySelector('').addEventListener("click", function() );*/
+
 }
 
 //Randomize dice value 1-6
@@ -48,4 +61,27 @@ function holdDice(dice) {
   else {event.target.classList.remove("held")}
 }
 
+//Add event listener to all elements that have a class of .score
 
+
+
+//Event listener will trigger a function that assigns a score
+//---stay simple - make it work badly, and then improve
+//---get a score from the dice to be saved into the box
+
+
+
+//Start adding logic for calculating score accurately
+
+function saveScore() {
+  console.log(event.target.parentNode.id);
+  type = event.target.parentNode.id;
+  if (type == "ones") {
+    console.log("Helloooo");
+  }
+  event.target.textContent = "placeholder";
+}
+
+
+
+//Refine rules for user ability to select boxes
