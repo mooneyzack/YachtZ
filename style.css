@@ -12,6 +12,8 @@ ol {
 *::before,
 *::after {
   box-sizing: border-box;
+
+  
 }
 
 /* Body Styles */
@@ -20,7 +22,7 @@ body {
   line-height: 1.6;
   background-color: #444;
   color: #999;
-  
+
 }
 
 /* Typography */
@@ -74,8 +76,8 @@ a:hover {
   border-radius: 10px;
   color: black;
   font-size: 25pt;
-  padding: 25px;
-  margin: 25px;
+  padding: 45px;
+  margin: 45px;
 }
 
 .held {
