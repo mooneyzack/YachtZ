@@ -40,8 +40,43 @@ let allDice = [Dice1, Dice2, Dice3, Dice4, Dice5];
 document.addEventListener("DOMContentLoaded", initEventListeners);
 
 function initEventListeners() {
+
+  const rollButton = document.querySelector('#roll');
+
+  // dice roll sounds
+  const audioFiles = [
+    "sounds/dice/dice1.mp3",
+    "sounds/dice/dice2.mp3",
+    "sounds/dice/dice3.mp3",
+    "sounds/dice/dice4.mp3",
+    "sounds/dice/dice5.mp3",
+    "sounds/dice/dice6.mp3",
+    "sounds/dice/dice7.mp3",
+    "sounds/dice/dice8.mp3",
+    "sounds/dice/dice9.mp3",
+    "sounds/dice/dice10.mp3"
+  ];
+
+
+
   // roll free dice
-  document.querySelector('#roll').addEventListener("click", rollFreeDice);
+  rollButton.addEventListener("click", rollFreeDice);
+
+  document.addEventListener("keydown", function(event) {
+    if (event.code === 'Space') {
+      playRandomSound(audioFiles);
+      rollFreeDice();
+    }
+  });
+
+  // function to play random sound from list of dice sounds
+  function playRandomSound(audioFiles) {
+    const randomIndex = Math.floor(Math.random() * audioFiles.length);
+    const audio = new Audio(audioFiles[randomIndex]);
+    audio.play();
+  }
+
+
   // functions to hold individual dice
   document.querySelector('#dice1').addEventListener("click", function() {holdDice(Dice1)});
   document.querySelector('#dice2').addEventListener("click", function() {holdDice(Dice2)});
@@ -55,43 +90,53 @@ function initEventListeners() {
     document.querySelectorAll('.score')[i].addEventListener("click", saveScore);
   }
 
-  /*
-  document.querySelector('#twos').addEventListener("click", function() );
-  document.querySelector('').addEventListener("click", function() );
-  document.querySelector('').addEventListener("click", function() );
-  document.querySelector('').addEventListener("click", function() );
-  document.querySelector('').addEventListener("click", function() );*/
+  for (var i = 0; i < document.querySelectorAll('.score').length; i++) {
+    document.querySelectorAll('.score')[i].addEventListener("click", nextTurn);
+  }
+
+  // listener for changing
+
+
+  // listener for sum of
+  document.addEventListener('click', ).
+
+  document.addEventListener("click", function(event) {
+    if (score1 + score2 + score3 + score4 + score5 + score6 >= 63) {
+      document.querySelector(`#top-section-bonus .bonus`).classList.add("activated");
+    }
+  });
+
+
+
 
 }
+
+
 
 //Randomize dice value 1-6
 function rollFreeDice() {
   if (!Dice1.holdState) {
     Dice1.setValue(Math.floor(Math.random() * 6) + 1);
-    document.querySelector('#dice1').textContent = Dice1.getValue();
-    //document.querySelector('#dice1').textContent = Math.floor(Math.random() * 6) + 1;
+    document.querySelector('#dice1 img').src = diceImages[Dice1.getValue() - 1];
   }
   if (!Dice2.holdState) {
     Dice2.setValue(Math.floor(Math.random() * 6) + 1);
-    document.querySelector('#dice2').textContent = Dice2.getValue();
-    //document.querySelector('#dice2').textContent = Math.floor(Math.random() * 6) + 1;
+    document.querySelector('#dice2 img').src = diceImages[Dice2.getValue() - 1];
   }
   if (!Dice3.holdState) {
     Dice3.setValue(Math.floor(Math.random() * 6) + 1);
-    document.querySelector('#dice3').textContent = Dice3.getValue();
-    //document.querySelector('#dice3').textContent = Math.floor(Math.random() * 6) + 1;
+    document.querySelector('#dice3 img').src = diceImages[Dice3.getValue() - 1];
   }
   if (!Dice4.holdState) {
     Dice4.setValue(Math.floor(Math.random() * 6) + 1);
-    document.querySelector('#dice4').textContent = Dice4.getValue();
-    //document.querySelector('#dice4').textContent = Math.floor(Math.random() * 6) + 1;
+    document.querySelector('#dice4 img').src = diceImages[Dice4.getValue() - 1];
   }
   if (!Dice5.holdState) {
     Dice5.setValue(Math.floor(Math.random() * 6) + 1);
-    document.querySelector('#dice5').textContent = Dice5.getValue();
-    //document.querySelector('#dice5').textContent = Math.floor(Math.random() * 6) + 1;
+    document.querySelector('#dice5 img').src = diceImages[Dice5.getValue() - 1];
   }
 }
+
 
 //Add event listener to each individual dice that calls a hold function
 function holdDice(dice) {
@@ -179,12 +224,30 @@ function calcScore(scoreNum) {
 
   //full house
   if (scoreNum === 9) {
-    return 25;
-  }
+    if ((counter1 === 3 || counter2 === 3 || counter3 === 3 || counter4 === 3 || counter5 === 3 || counter6 === 3) &&
+        (counter1 === 2 || counter2 === 2 || counter3 === 2 || counter4 === 2 || counter5 === 2 || counter6 === 2)) {
+      return 25;
+    }
+    else {
+        return 0;
+      }
+    }
 
   //small straight
   if (scoreNum === 10) {
-    return 30;
+    if (
+      (counter3 >= 1 && counter4 >= 1)
+      &&
+      ((counter2 >= 1 && (counter1 >=1 || counter5 >= 1))
+      ||
+      ((counter5 >= 1 && counter6 >= 1 ))
+      )
+    ){
+      return 30;
+    }
+    else {
+      return 0;
+    }
   }
 
   //large straight
@@ -219,7 +282,17 @@ function calcScore(scoreNum) {
 
   //second yahtzee
   if (scoreNum === 13) {
-    return 50;
+    if (counter1 === 5 ||
+        counter2 === 5 ||
+        counter3 === 5 ||
+        counter4 === 5 ||
+        counter5 === 5 ||
+        counter6 === 5) {
+      return 100;
+    }
+    else {
+      return 0;
+    }
   }
 
   //chance
@@ -239,12 +312,21 @@ function saveScore() {
   console.log(event.target.parentNode.id);
   type = event.target.parentNode.id;
 
-  if (type == "ones") {event.target.textContent = calcScore(1);}
-  if (type == "twos") {event.target.textContent = calcScore(2);}
-  if (type == "threes") {event.target.textContent = calcScore(3);}
-  if (type == "fours") {event.target.textContent = calcScore(4);}
-  if (type == "fives") {event.target.textContent = calcScore(5);}
-  if (type == "sixes") {event.target.textContent = calcScore(6);}
+  if (type === "ones") {event.target.textContent = calcScore(1);}
+  if (type === "twos") {event.target.textContent = calcScore(2);}
+  if (type === "threes") {event.target.textContent = calcScore(3);}
+  if (type === "fours") {event.target.textContent = calcScore(4);}
+  if (type === "fives") {event.target.textContent = calcScore(5);}
+  if (type === "sixes") {event.target.textContent = calcScore(6);}
+
+  if (type === "three-kind") {event.target.textContent = calcScore(7);}
+  if (type === "four-kind") {event.target.textContent = calcScore(8);}
+  if (type === "full-house") {event.target.textContent = calcScore(9);}
+  if (type === "small-straight") {event.target.textContent = calcScore(10);}
+  if (type === "large-straight") {event.target.textContent = calcScore(11);}
+  if (type === "first-yahtzee") {event.target.textContent = calcScore(12);}
+  if (type === "second-yahtzee") {event.target.textContent = calcScore(13);}
+  if (type === "chance") {event.target.textContent = calcScore(14);}
 
   if (type == "three-kind") {event.target.textContent = calcScore(7);}
   if (type == "four-kind") {event.target.textContent = calcScore(8);}
