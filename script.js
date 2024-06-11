@@ -9,12 +9,16 @@ class Dice {
     this.holdState = false;
     this.value = null;
   }
-  setValue(newValue) {
-    this.value = newValue;
+  setValue(newValue) {this.value = newValue;}
+
+  getValue() {return this.value;}
+
+  setHoldState(bool) {
+    this.holdState = bool;
   }
 
-  getValue() {
-    return this.value;
+  getHoldState() {
+    return this.holdState;
   }
 }
 
@@ -85,7 +89,6 @@ function initEventListeners() {
   document.querySelector('#dice5').addEventListener("click", function() {holdDice(Dice5)});
 
   // functions for calculating scores
-  //document.querySelector('#ones .score').addEventListener("click", saveScore);
   for (var i = 0; i < document.querySelectorAll('.score').length; i++) {
     document.querySelectorAll('.score')[i].addEventListener("click", saveScore);
   }
@@ -301,11 +304,6 @@ function calcScore(scoreNum) {
   }
 }
 
-
-
-
-
-
 //Start adding logic for calculating score accurately
 
 function saveScore() {
@@ -328,16 +326,19 @@ function saveScore() {
   if (type === "second-yahtzee") {event.target.textContent = calcScore(13);}
   if (type === "chance") {event.target.textContent = calcScore(14);}
 
-  if (type == "three-kind") {event.target.textContent = calcScore(7);}
-  if (type == "four-kind") {event.target.textContent = calcScore(8);}
-  if (type == "full-house") {event.target.textContent = calcScore(9);}
-  if (type == "small-straight") {event.target.textContent = calcScore(10);}
-  if (type == "large-straight") {event.target.textContent = calcScore(11);}
-  if (type == "first-yahtzee") {event.target.textContent = calcScore(12);}
-  if (type == "second-yahtzee") {event.target.textContent = calcScore(13);}
-  if (type == "chance") {event.target.textContent = calcScore(14);}
+  calculateUpperBonus();
 }
 
+function calculateUpperBonus() {
+  var bonus = document.querySelector('#top-section-bonus .bonus');
+  var total = document.querySelector('ones').textContent + document.querySelector('twos').textContent + document.querySelector('threes').textContent + document.querySelector('fours').textContent + document.querySelector('fives').textContent + document.querySelector('sixes').textContent;
+  if (total >= 63) {
+    bonus.textContent = 35;
+  } else {
+    bonus.textContent = 0;
+  }
+  document.querySelector('#top-section-total .total').textContent = total + parseInt(bonus.textContent);
+}
 
 
 //Refine rules for user ability to select boxes
