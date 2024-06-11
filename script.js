@@ -22,16 +22,62 @@ class Dice {
   }
 }
 
+class Scoresheet {
+  constructor() {
+    // Upper section
+    this.ones = 0;
+    this.twos = 0;
+    this.threes = 0;
+    this.fours = 0;
+    this.fives = 0;
+    this.sixes = 0;
+
+    // Lower section
+    this.threeOfAKind = 0;
+    this.fourOfAKind = 0;
+    this.fullHouse = 0;
+    this.smallStraight = 0;
+    this.largeStraight = 0;
+    this.yahtzee = 0;
+    this.extraYahtzee = 0;
+    this.chance = 0;
+
+    // Totals
+    this.upperTotal = 0;
+    this.bonus = false;
+    this.upperGrandTotal = 0;
+    this.lowerTotal = 0;
+    this.grandTotal = 0;
+  }
+  setUpperTotal() {this.upperTotal = this.ones + this.twos + this.threes + this.fours + this.fives + this.sixes;}
+  setBonus() {this.bonus = this.upperTotal > 62;}
+  setUpperGrandTotal() {
+    if (this.bonus) {
+      this.upperGrandTotal = (this.upperTotal + 35);
+    }
+  }
+  setLowerTotal() {this.lowerTotal = this.threeOfAKind + this.fourOfAKind + this.fullHouse + this.smallStraight + this.largeStraight + this.yahtzee + this.extraYahtzee + this.chance;}
+  setGrandTotal() {this.grandTotal = this.upperGrandTotal + this.lowerTotal;}
+}
 
 
-// Optional class for rolling
-// class Roll {
-//   rollState;
-//
-//   constructor() {
-//     this.rollState = 0;
-//   }
-// }
+const diceImages = [
+  "images/dice1.png",
+  "images/dice2.png",
+  "images/dice3.png",
+  "images/dice4.png",
+  "images/dice5.png",
+  "images/dice6.png"
+]
+
+class Turn {
+  rollsLeft;
+  constructor() {this.rollsLeft = 3;}
+  setRollsLeft(newValue) {this.rollsLeft = newValue;}
+  getRollsLeft() {return this.rollsLeft;}
+}
+
+let thisTurn = new Turn();
 
 let Dice1 = new Dice();
 let Dice2 = new Dice();
@@ -151,22 +197,18 @@ function holdDice(dice) {
 }
 
 //Add event listener to all elements that have a class of .score
-
-
+// Trigger "next turn" and remove .held class from all dice
+// Should be called when .score element is clicked
+function nextTurn() {
+  for (let dice of allDice) {
+    dice.setHoldState(false);
+    document.querySelector(dice).classList.remove("held");
+  }
+}
 
 //Event listener will trigger a function that assigns a score
 //---stay simple - make it work badly, and then improve
 //---get a score from the dice to be saved into the box
-
-// function calcScoreSingle(numVal) {
-//   let counter = 0;
-//   for (let dice of allDice) {
-//     if (dice.getValue() === numVal) {
-//       counter++;
-//     }
-//   }
-//   return counter * numVal;
-// }
 
 function calcScore(scoreNum) {
   let counter1 = 0;
@@ -175,6 +217,8 @@ function calcScore(scoreNum) {
   let counter4 = 0;
   let counter5 = 0;
   let counter6 = 0;
+
+  let allCounter = [counter1, counter2, counter3, counter4, counter5, counter6];
 
   let totVal = 0;
   for (let dice of allDice) {
