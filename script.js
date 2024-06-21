@@ -1,6 +1,3 @@
-//Click roll button
-
-
 class Dice {
   holdState;
   value;
@@ -22,17 +19,6 @@ class Dice {
   }
 }
 
-
-
-// Optional class for rolling
-// class Roll {
-//   rollState;
-//
-//   constructor() {
-//     this.rollState = 0;
-//   }
-// }
-
 let Dice1 = new Dice();
 let Dice2 = new Dice();
 let Dice3 = new Dice();
@@ -43,33 +29,44 @@ let allDice = [Dice1, Dice2, Dice3, Dice4, Dice5];
 
 document.addEventListener("DOMContentLoaded", initEventListeners);
 
+const diceImages = [
+  "images/dice1.png",
+  "images/dice2.png",
+  "images/dice3.png",
+  "images/dice4.png",
+  "images/dice5.png",
+  "images/dice6.png"
+];
+
+// dice roll sounds
+const audioFiles = [
+  "sounds/dice/dice1.mp3",
+  "sounds/dice/dice2.mp3",
+  "sounds/dice/dice3.mp3",
+  "sounds/dice/dice4.mp3",
+  "sounds/dice/dice5.mp3",
+  "sounds/dice/dice6.mp3",
+  "sounds/dice/dice7.mp3",
+  "sounds/dice/dice8.mp3",
+  "sounds/dice/dice9.mp3",
+  "sounds/dice/dice10.mp3"
+];
+
 function initEventListeners() {
 
   const rollButton = document.querySelector('#roll');
 
-  // dice roll sounds
-  const audioFiles = [
-    "sounds/dice/dice1.mp3",
-    "sounds/dice/dice2.mp3",
-    "sounds/dice/dice3.mp3",
-    "sounds/dice/dice4.mp3",
-    "sounds/dice/dice5.mp3",
-    "sounds/dice/dice6.mp3",
-    "sounds/dice/dice7.mp3",
-    "sounds/dice/dice8.mp3",
-    "sounds/dice/dice9.mp3",
-    "sounds/dice/dice10.mp3"
-  ];
-
-
-
   // roll free dice
-  rollButton.addEventListener("click", rollFreeDice);
+  rollButton.addEventListener("click", rollActions);
+
+  function rollActions() {
+    playRandomSound(audioFiles);
+    rollFreeDice();
+  }
 
   document.addEventListener("keydown", function(event) {
     if (event.code === 'Space') {
-      playRandomSound(audioFiles);
-      rollFreeDice();
+      rollActions();
     }
   });
 
@@ -80,7 +77,6 @@ function initEventListeners() {
     audio.play();
   }
 
-
   // functions to hold individual dice
   document.querySelector('#dice1').addEventListener("click", function() {holdDice(Dice1)});
   document.querySelector('#dice2').addEventListener("click", function() {holdDice(Dice2)});
@@ -88,33 +84,29 @@ function initEventListeners() {
   document.querySelector('#dice4').addEventListener("click", function() {holdDice(Dice4)});
   document.querySelector('#dice5').addEventListener("click", function() {holdDice(Dice5)});
 
-  // functions for calculating scores
+  // functions for saving score
   for (var i = 0; i < document.querySelectorAll('.score').length; i++) {
     document.querySelectorAll('.score')[i].addEventListener("click", saveScore);
   }
 
-  for (var i = 0; i < document.querySelectorAll('.score').length; i++) {
-    document.querySelectorAll('.score')[i].addEventListener("click", nextTurn);
-  }
+  // function to begin next turn
+  // for (var i = 0; i < document.querySelectorAll('.score').length; i++) {
+  //   document.querySelectorAll('.score')[i].addEventListener("click", nextTurn);
+  // }
 
   // listener for changing
 
 
   // listener for sum of
-  document.addEventListener('click', ).
+  // document.addEventListener('click', ).
 
-  document.addEventListener("click", function(event) {
-    if (score1 + score2 + score3 + score4 + score5 + score6 >= 63) {
-      document.querySelector(`#top-section-bonus .bonus`).classList.add("activated");
-    }
-  });
-
-
-
-
+  // visual cue to show that top bonus is achieved
+  // document.addEventListener("click", function(event) {
+  //   if (score1 + score2 + score3 + score4 + score5 + score6 >= 63) {
+  //     document.querySelector(`#top-section-bonus .bonus`).classList.add("activated");
+  //   }
+  // });
 }
-
-
 
 //Randomize dice value 1-6
 function rollFreeDice() {
@@ -325,20 +317,26 @@ function saveScore() {
   if (type === "first-yahtzee") {event.target.textContent = calcScore(12);}
   if (type === "second-yahtzee") {event.target.textContent = calcScore(13);}
   if (type === "chance") {event.target.textContent = calcScore(14);}
-
-  calculateUpperBonus();
 }
 
-function calculateUpperBonus() {
-  var bonus = document.querySelector('#top-section-bonus .bonus');
-  var total = document.querySelector('ones').textContent + document.querySelector('twos').textContent + document.querySelector('threes').textContent + document.querySelector('fours').textContent + document.querySelector('fives').textContent + document.querySelector('sixes').textContent;
-  if (total >= 63) {
-    bonus.textContent = 35;
-  } else {
-    bonus.textContent = 0;
-  }
-  document.querySelector('#top-section-total .total').textContent = total + parseInt(bonus.textContent);
-}
+
+// function to calculate if top section bonus will be applied
+// function calculateUpperBonus() {
+//   var bonus = document.querySelector('#top-section-bonus .bonus');
+//   var total =
+//       document.querySelector('ones').textContent +
+//       document.querySelector('twos').textContent +
+//       document.querySelector('threes').textContent +
+//       document.querySelector('fours').textContent +
+//       document.querySelector('fives').textContent +
+//       document.querySelector('sixes').textContent;
+//   if (total >= 63) {
+//     bonus.textContent = 35;
+//   } else {
+//     bonus.textContent = 0;
+//   }
+//   document.querySelector('#top-section-total .total').textContent = total + parseInt(bonus.textContent);
+// }
 
 
 //Refine rules for user ability to select boxes

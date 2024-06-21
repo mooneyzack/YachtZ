@@ -64,12 +64,23 @@ a:hover {
 }
 
 #roll {
-  padding: 10px 160px;
+  padding: 2% 32%;
   font-size: 25pt;
+  width: 200%;
 }
 
 #roll:hover {
   cursor: pointer;
+}
+
+#new-game {
+  /*padding: 10px 160px;*/
+  font-size: 25pt;
+}
+
+#new-game:hover {
+  cursor: pointer;
+  background-color: greenyellow;
 }
 
 .title, .score, .total, .bonus {
@@ -88,7 +99,6 @@ a:hover {
   color: black;
   font-size: 25pt;
   padding: 5px;
-  margin: 35px 110px;
   text-align: center;
   max-width: 150px;
   max-height: 150px;
@@ -123,13 +133,13 @@ a:hover {
 .dice-container {
   display: inline-block;
   position: absolute;
-  left: 45%;
+  margin-left: 20%;
 }
 
 .scoresheet {
   display: inline-block;
-  margin-right: 50px;
-  margin-left: 100px;
+  /*margin-right: 50px;*/
+  margin-left: 10%;
 }
 
 /* Grid Layout */
