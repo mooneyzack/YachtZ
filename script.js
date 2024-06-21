@@ -139,7 +139,7 @@ function holdDice(dice) {
 //   return counter * numVal;
 // }
 
-function calcScore(scoreNum) {
+function calcScore(ruleName) {
   let counter1 = 0;
   let counter2 = 0;
   let counter3 = 0;
@@ -159,15 +159,15 @@ function calcScore(scoreNum) {
   }
 
   //top section/individual numbers
-  if (scoreNum === 1) {return counter1;}
-  if (scoreNum === 2) {return counter2 * 2;}
-  if (scoreNum === 3) {return counter3 * 3;}
-  if (scoreNum === 4) {return counter4 * 4;}
-  if (scoreNum === 5) {return counter5 * 5;}
-  if (scoreNum === 6) {return counter6 * 6;}
+  if (ruleName === "ones") {return counter1;}
+  if (ruleName === "twos") {return counter2 * 2;}
+  if (ruleName === "threes") {return counter3 * 3;}
+  if (ruleName === "fours") {return counter4 * 4;}
+  if (ruleName === "fives") {return counter5 * 5;}
+  if (ruleName === "sixes") {return counter6 * 6;}
 
   //three of a kind
-  if (scoreNum === 7) {
+  if (ruleName === "three-kind") {
     if (counter1 >= 3 ||
         counter2 >= 3 ||
         counter3 >= 3 ||
@@ -182,7 +182,7 @@ function calcScore(scoreNum) {
   }
 
   //four of a kind
-  if (scoreNum === 8) {
+  if (ruleName === "four-kind") {
     if (counter1 >= 4 ||
         counter2 >= 4 ||
         counter3 >= 4 ||
@@ -197,7 +197,7 @@ function calcScore(scoreNum) {
   }
 
   //full house
-  if (scoreNum === 9) {
+  if (ruleName === "full-house") {
     if ((counter1 === 3 || counter2 === 3 || counter3 === 3 || counter4 === 3 || counter5 === 3 || counter6 === 3) &&
         (counter1 === 2 || counter2 === 2 || counter3 === 2 || counter4 === 2 || counter5 === 2 || counter6 === 2)) {
       return 25;
@@ -208,7 +208,7 @@ function calcScore(scoreNum) {
     }
 
   //small straight
-  if (scoreNum === 10) {
+  if (ruleName === "small-straight") {
     if (
       (counter3 >= 1 && counter4 >= 1)
       &&
@@ -225,7 +225,7 @@ function calcScore(scoreNum) {
   }
 
   //large straight
-  if (scoreNum === 11) {
+  if (ruleName === "large-straight") {
     if (
         (counter2 === 1 && counter3 === 1 && counter4 === 1 && counter5 === 1)
         &&
@@ -240,7 +240,7 @@ function calcScore(scoreNum) {
   }
 
   //yahtzee
-  if (scoreNum === 12) {
+  if (ruleName === "first-yahtzee") {
     if (counter1 === 5 ||
         counter2 === 5 ||
         counter3 === 5 ||
@@ -255,7 +255,7 @@ function calcScore(scoreNum) {
   }
 
   //second yahtzee
-  if (scoreNum === 13) {
+  if (ruleName === "second-yahtzee") {
     if (counter1 === 5 ||
         counter2 === 5 ||
         counter3 === 5 ||
@@ -270,7 +270,7 @@ function calcScore(scoreNum) {
   }
 
   //chance
-  if (scoreNum === 14) {
+  if (ruleName === "chance") {
     return totVal;
   }
 }
@@ -280,22 +280,7 @@ function calcScore(scoreNum) {
 function saveScore() {
   console.log(event.target.parentNode.id);
   type = event.target.parentNode.id;
-
-  if (type === "ones") {event.target.textContent = calcScore(1);}
-  if (type === "twos") {event.target.textContent = calcScore(2);}
-  if (type === "threes") {event.target.textContent = calcScore(3);}
-  if (type === "fours") {event.target.textContent = calcScore(4);}
-  if (type === "fives") {event.target.textContent = calcScore(5);}
-  if (type === "sixes") {event.target.textContent = calcScore(6);}
-
-  if (type === "three-kind") {event.target.textContent = calcScore(7);}
-  if (type === "four-kind") {event.target.textContent = calcScore(8);}
-  if (type === "full-house") {event.target.textContent = calcScore(9);}
-  if (type === "small-straight") {event.target.textContent = calcScore(10);}
-  if (type === "large-straight") {event.target.textContent = calcScore(11);}
-  if (type === "first-yahtzee") {event.target.textContent = calcScore(12);}
-  if (type === "second-yahtzee") {event.target.textContent = calcScore(13);}
-  if (type === "chance") {event.target.textContent = calcScore(14);}
+  event.target.textContent = calcScore(type);
 }
 
 
