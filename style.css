@@ -66,7 +66,8 @@ a:hover {
 #roll {
   padding: 2% 32%;
   font-size: 25pt;
-  width: 200%;
+  width: 100%;
+  margin-top: 25px;
 }
 
 #roll:hover {
@@ -75,12 +76,16 @@ a:hover {
 
 #new-game {
   /*padding: 10px 160px;*/
+  margin-bottom: 25px;
   font-size: 25pt;
+  width: 100%;
 }
 
 #new-game:hover {
   cursor: pointer;
   background-color: greenyellow;
+  border-color: white;
+  border-width: thick;
 }
 
 .title, .score, .total, .bonus {
@@ -93,15 +98,32 @@ a:hover {
 }
 
 .dice {
-  background-color: black;
-  border: 5px black solid;
-  border-radius: 10px;
-  color: black;
-  font-size: 25pt;
-  padding: 5px;
-  text-align: center;
-  max-width: 150px;
-  max-height: 150px;
+  /*background-color: black;*/
+  /*!*border: 5px black solid;*!*/
+  /*border-radius: 2px;*/
+  /*color: black;*/
+  /*font-size: 25pt;*/
+  /*padding: 5px;*/
+  /*text-align: center;*/
+  /*max-width: 150px;*/
+  /*max-height: 150px;*/
+
+  /*width: 75px;*/
+  /*height: 75px;*/
+  /*border-radius: 5px;*/
+  /*background-color: red;*/
+  /*margin: 10px;*/
+}
+
+#dice1 { grid-area: dice1 }
+#dice2 { grid-area: dice2 }
+#dice3 { grid-area: dice3 }
+#dice4 { grid-area: dice4 }
+#dice5 { grid-area: dice5 }
+
+.logo {
+  grid-area: logo;
+  padding: 2px;
 }
 
 .dice img {
@@ -114,26 +136,24 @@ a:hover {
   cursor: pointer;
 }
 
-.dice2and3 {
-
-}
-
-.dice4and5 {
-
-}
-
-.held {
-  border: 15px blue solid;
-}
-
-.activated {
-  background-color: gold;
+.game-container {
+  display: inline-block;
+  position: absolute;
+  margin-left: 8%;
 }
 
 .dice-container {
-  display: inline-block;
-  position: absolute;
-  margin-left: 20%;
+  display: grid;
+  /*grid-template-rows: 100px 50px 100px 100px 100px;*/
+  /*grid-template-columns: 20% 20% 20% 20% 20%;*/
+  grid-template-areas:
+    ". . dice1 dice1 . ."
+    ". . dice1 dice1 . ."
+    "dice2 dice2 logo logo dice3 dice3"
+    "dice2 dice2 logo logo dice3 dice3"
+    ". dice4 dice4 dice5 dice5 ."
+    ". dice4 dice4 dice5 dice5 ."
+
 }
 
 .scoresheet {
@@ -141,6 +161,11 @@ a:hover {
   /*margin-right: 50px;*/
   margin-left: 10%;
 }
+
+.held {
+  border: 15px blue solid;
+}
+
 
 /* Grid Layout */
 .row {
@@ -173,6 +198,10 @@ a:hover {
 .filled-in { /* styling for when score has been recorded in score box*/
   background-color: coral;
   cursor:not-allowed;
+}
+
+.activated {
+  background-color: gold;
 }
 
 /*.filled-in:hover {*/
