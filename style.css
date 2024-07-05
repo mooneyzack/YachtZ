@@ -18,7 +18,7 @@ ol {
 
 /* Body Styles */
 body {
-  font-family: Georgia, serif;
+  font-family: -apple-system,sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   font-weight: bold;
@@ -26,6 +26,7 @@ body {
   color: black;
 
 }
+
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -40,7 +41,8 @@ p {
 
 header {
   text-align: center;
-  color: #444;
+  color: #222;
+  font-family: -apple-system,sans-serif;
   background-color: aqua;
   font-size: 200%;
 }
@@ -63,32 +65,82 @@ a:hover {
   padding: 0 10px;
 }
 
+#roll-display {
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  /*background-color: aqua;*/
+  /*border-radius: 10px;*/
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  /*transform: scale(1.125);*/
+  border-style: dashed;
+  margin-top: 3%;
+  max-width: fit-content;
+  margin-right: 1%;
+  padding: 0% 2%;
+  float: left;
+}
+
+#roll:active {
+  transform: scale(1.025);
+}
+
 #roll {
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  transform: scale(1.125);
   padding: 2% 32%;
   font-size: 25pt;
-  width: 100%;
-  margin-top: 25px;
+  width: 80%;
+  margin-top: 2%;
+  margin-left: 10%;
+  border-radius: 10px;
+  font-family: -apple-system,sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+
 }
 
 #roll:hover {
   cursor: pointer;
+  /*background-color: orangered;*/
+  /*border-color: white;*/
+  /*border-width: thick;*/
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  transform: scale(1.125);
 }
 
 #new-game {
   /*padding: 10px 160px;*/
-  margin-bottom: 25px;
-  font-size: 25pt;
-  width: 100%;
+  font-family: -apple-system,sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  display: inline-block;
+  border-color: white;
+  border-radius: 10px;
+  background-image: linear-gradient(#4059ff, #42a3f3 50%,#00DDEB);
+  /*margin-bottom: 2%;*/
+  padding: 1%;
+  max-width: fit-content;
+  align-content: center;
+  margin-top: 1%;
+  margin-left: auto;
+  float: right;
 }
 
 #new-game:hover {
   cursor: pointer;
-  background-color: greenyellow;
   border-color: white;
   border-width: thick;
+  border-style: outset;
 }
 
-.title, .score, .total, .bonus {
+.title, .score, .total, .bonus, .extra {
   display: inline-block;
   border: 2px red solid;
   min-height: 20px;
@@ -112,67 +164,112 @@ a:hover {
   /*height: 75px;*/
   /*border-radius: 5px;*/
   /*background-color: red;*/
-  /*margin: 10px;*/
+  margin: auto;
+  padding: 2% 2% 0 2%;
 }
 
-#dice1 { grid-area: dice1 }
-#dice2 { grid-area: dice2 }
-#dice3 { grid-area: dice3 }
-#dice4 { grid-area: dice4 }
-#dice5 { grid-area: dice5 }
+#dice1 {
+  grid-area: dice1
+}
+
+#dice2 {
+  grid-area: dice2
+}
+
+#dice3 {
+  grid-area: dice3
+}
+
+#dice4 {
+  grid-area: dice4
+}
+
+#dice5 {
+  grid-area: dice5
+}
+
+#dice1:hover {
+  background-color: coral;
+
+}
+
+#dice2:hover {
+  background-color: red;
+}
+
+#dice3:hover {
+  background-color: #007bff;
+}
+
+#dice4:hover {
+  background-color: orange;
+}
+
+#dice5:hover {
+  background-color: darkblue;
+}
 
 .logo {
+  resize: inherit;
   grid-area: logo;
   padding: 2px;
 }
 
 .dice img {
-  border-radius: 30px;
+  border-radius: 33px;
 }
 
-.dice:hover {
-  background-color: coral;
-  border: 8px darkgrey solid;
-  cursor: pointer;
-}
+/*.dice:hover {*/
+/*  border: 8px gold solid;*/
+/*  border-radius: 40px;*/
+/*  cursor: pointer;*/
+/*}*/
 
 .game-container {
   display: inline-block;
   position: absolute;
-  margin-left: 8%;
+  margin-left: 3%;
 }
 
 .dice-container {
   display: grid;
-  /*grid-template-rows: 100px 50px 100px 100px 100px;*/
-  /*grid-template-columns: 20% 20% 20% 20% 20%;*/
   grid-template-areas:
     ". . dice1 dice1 . ."
     ". . dice1 dice1 . ."
     "dice2 dice2 logo logo dice3 dice3"
     "dice2 dice2 logo logo dice3 dice3"
     ". dice4 dice4 dice5 dice5 ."
-    ". dice4 dice4 dice5 dice5 ."
-
+    ". dice4 dice4 dice5 dice5 .";
+  margin-top: 12%;
 }
 
 .scoresheet {
   display: inline-block;
   /*margin-right: 50px;*/
-  margin-left: 10%;
+  margin-left: 7%;
+  margin-top: 1%;
+  font-size: medium;
+  border: 5px dashed;
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  /*padding: 1rem;*/
+  /*border: white;*/
+  /*border-style: double;*/
 }
 
 .held {
-  border: 15px blue solid;
+  /*border: 15px gold solid;*/
+  opacity: 40%;
 }
 
 
 /* Grid Layout */
 .row {
   display: block;
+  color: black;
   background-color: white;
   flex-wrap: wrap;
-  margin: 0 -10px;
+  text-align: center;
 }
 
 .col {
@@ -181,18 +278,25 @@ a:hover {
 }
 
 .title {
-  width: 150px;
+  width: auto;
   text-align: center;
 }
 
-.score, .total, .bonus {
+.score, .total, .bonus, .extra {
   width: 75px;
   height: 50px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
+.points {
+  min-width: 20%;
+}
 .score:hover {
-  background-color: aqua;
+  background-color: lightpink;
+}
+
+.extra:hover {
+  background-color: gold;
 }
 
 .filled-in { /* styling for when score has been recorded in score box*/
@@ -222,4 +326,8 @@ img {
 /* Media Queries */
 @media (max-width: 768px) {
   /* Add responsive styles here */
+}
+
+.total-row {
+  background-color: lightgoldenrodyellow;
 }

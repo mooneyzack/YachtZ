@@ -8,93 +8,95 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header>
-      <h1>Let's Play YachtZ!</h1>
-    </header>
+<!--    <header>-->
+<!--      <div>Let's Play YachtZ!</div>-->
+<!--    </header>-->
     <script src="classes/dice.js"></script>
     <script src="classes/turn.js"></script>
     <script src="classes/scoresheet.js"></script>
-    <script src="script.js"></script>
     <div class="scoresheet">
       <div class="top-section">
         <div id="ones" class="row">
           <div class="title">Ones</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="twos" class="row">
           <div class="title">Twos</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="threes" class="row">
           <div class="title">Threes</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="fours" class="row">
           <div class="title">Fours</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="fives" class="row">
           <div class="title">Fives</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="sixes" class="row">
           <div class="title">Sixes</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
       </div>
-      <div id="top-section-bonus" class="row">
+      <div class="row">
         <div class="title">Bonus</div>
-        <div class="bonus"></div>
+        <div id="top-section-bonus" class="bonus points"></div>
       </div>
-      <div id="top-section-total" class="row">
+      <div class="total-row row">
         <div class="title">Top Section Total</div>
-        <div class="total"></div>
+        <div id="top-section-total" class="total points"></div>
       </div>
       <div class="bottom-section">
         <div id="three-kind" class="row">
           <div class="title">Three of a Kind</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="four-kind" class="row">
           <div class="title">Four of a Kind</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="full-house" class="row">
           <div class="title">Full House</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="small-straight" class="row">
           <div class="title">Small Straight</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="large-straight" class="row">
           <div class="title">Large Straight</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="first-yahtzee" class="row">
           <div class="title">Yahtzee</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
         <div id="second-yahtzee" class="row">
           <div class="title">Extra Yahtzee</div>
-          <div class="score"></div>
+          <div class="extra points"></div>
         </div>
         <div id="chance" class="row">
           <div class="title">Chance</div>
-          <div class="score"></div>
+          <div class="score points"></div>
         </div>
       </div>
-      <div id="bottom-section-total" class="row">
+      <div class="total-row row">
         <div class="title">Bottom Section Total</div>
-        <div class="total"></div>
+        <div id="bottom-section-total" class="total points"></div>
       </div>
-      <div id="all-sections-total" class="row">
+      <div class="total-row row">
         <div class="title">Total</div>
-        <div class="total"></div>
+        <div id="all-sections-total" class="total points"></div>
       </div>
     </div>
     <div class="game-container">
-      <button id="new-game">New Game</button>
+      <div id="game-info">
+        <button id="new-game">New Game</button>
+        <div id="roll-display">Rolls Left: <span id="roll-count">3</span></div>
+      </div>
       <div class="dice-container">
         <div class="dice" id="dice1"><img src="images/dice1.png" alt="d1"></div>
         <div class="dice" id="dice2"><img src="images/dice2.png" alt="d2"></div>
@@ -105,5 +107,6 @@
       </div>
       <button id="roll">Roll</button>
     </div>
+  <script src="script.js"></script>
   </body>
 </html>
